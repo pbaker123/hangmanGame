@@ -4,12 +4,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Hangman</title>
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, 1094px">
-		<link 
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!-- <link 
 			href="assets/css/reset.css"
 			rel="stylesheet" 
 			type="text/css" 
-			>
+			> -->
 		<link 
 			href="assets/css/style.css"
 			rel="stylesheet" 
@@ -18,43 +18,97 @@
 	</head>
 
 	<body>
+		
+		<div id="gameTrack">
+			<audio src="assets/audio/strangerThings.mp3" autoplay="true" loop="true"></audio>
+		</div>
+	
 		<div class="mainGridContainer">
-			<div class="headerContainer">
+			<div class="headerContainer" id="title">
+				<img src="assets/images/title.png">
+			</div>
+			<div class="headerContainer2" id="title2">
 				<img src="assets/images/title.png">
 			</div>
 			<div class="contentContainer">
+				<div id="preStory">
+					<div class="scrollContainer">
+						<div class="scrollContainer2">
+							<div id="target">
+								<div>					
+									<br><br><br><br><br><br><br><br><br><br><br>
+				    				<h1>Its the year 540...</h1><br><br>
+				    				<p>Whilst investigating the death of a local swordsman, a surviving full stack developer called Luke Torrance uncovers a legend about a supernaturally-cursed, hawk circulating throughout Austin. As soon as anyone uses the hawk, he or she has exactly 55 days left to live.  At the end of the 55 days, the Red Witch will come to collect her price.</p>
+				    				<p>The doomed few appear to be ordinary people during day to day life, but when photographed, they look grey. A marked person feels like a rural mouse to touch.</p>
+				    				<p>Luke gets hold of the hawk, refusing to believe the superstition. A collage of images flash into his mind: a dirty gerbil balancing on a tattered swordsman, an old newspaper headline about a magic accident, a hooded frog ranting about eyes and a drinking well located in an urban place.</p>
+				    				<p>When Luke notices his eyelashes have mouse-like properties, he realises that the curse of the magic hawk is true and calls in his lover, a fishmonger called Andrew Torrance, to help.</p>
+				    				<p>Andrew examines the hawk and willingly submits himself to the curse. He finds that the same visions flash before his eyes. He finds the dirty gerbil balancing on a tattered swordsman particularly chilling. He joins the queue for a supernatural death.</p>
+				    				<p>Luke and Andrew pursue a quest to uncover the meaning of the visions, starting with a search for the hooded frog. Will they be able to stop the curse before their time is up?</p>
+				    				<br>
+				    				<p>After 55 days of the curse, the Red Witch captures the afflicted</p><br><br>
+				    				<p>Your time has come, and you have been captured</p><br><br>
+				    				<p>The only escape is to guess the code word</p><br><br>
+									<p>Type the letter you wish to guess, pray you are correct.</p><br><br>
+				    				<p>If you aren't correct, one piece of you will be added to the noose.</p><br><br>
+				    				<p>When your entire body is added to the noose...</p><br><br>
+				    			</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="pressStart">
+					<h1>Press Spacebar to Play</h1>
+				</div>
+				<div id="playAgain">
+					<h1>Press Spacebar to Play Again</h1>
+				</div>
+
+				<div id="scoreBoard">
+						<div class="floatLeft">
+								Wins: 
+						</div>
+						<div class="floatRight" id="wins">
+								<!-- Placeholder for wins -->
+						</div>
+						<br><br>
+						<div class="floatLeft">
+								Losses: 
+						</div>
+						<div class="floatRight" id="losses">
+								<!-- Placeholder for losses -->
+						</div>
+					</div>
+				<div id="winStory">
+					
+				</div>
+
+				<div id="lossStory">
+					
+				</div>
 				<div class="leftContent" id="updateImage">
 					<img "src="assets/images/left13.png">
 				</div>
 				<div class="gameContent">
-					<div class="gameBoard" id="gameBoard">
-						<div class="scoreLine">
-							<div class="gameBoardScoreboardLabelWins">
-								W: 
-							</div>
-							<div class=".gameBoardScoreboardResultWins" id="wins">
-								<!-- Placeholder for wins -->
-							</div>
-							<div class="gameBoardScoreboardLabelLoss">
-								L: 
-							</div>
-							<div class=".gameBoardScoreboardResultLoss" id="losses">
-								<!-- Placeholder for losses -->
-							</div>
-						</div>
+					
+					
+
+					<div id="winStory">
+						<h2>You Won!!</h2>
+						<p>Your lineage will continue for centuries to come.</p>
+						<p>How many more can you save?</p>
 						
-						<div class="currentWordLabel">
-							Current word
-						</div>
+					</div>
+
+					<div id="lossStory">
+						
+					</div>
+					<div class="gameBoard" id="gameBoard">
+							
+						
 						<div class="currentWord" id="gameWord">
 							<!-- Placeholder for the current word -->
 						</div>
-						<div class="numberOfGuessesLable">
-							Remaining Guesses:
-						</div>
-						<div class="numberOfGuesses" id="guesses">
-							<!-- Placeholder for the remaining guesses -->
-						</div>
+						
 						<div class="letterPoolLable">
 							Letter Pool
 						</div>
@@ -73,34 +127,17 @@
 			</div>
 		</div>
 
-		<div id="preStory">
-			<h1>In the year 540...</h1> 
-			<p>An evil red witch is hanging all the illeterates. It is imparative that you guess the code word to prove your literacy, and thus save yourself from a neck-breaking fate.</p>
-			<p>Type your letters to guess the words, but be careful, after 13 wrong guesses, you will meet your fate.</p>
-			
-		</div>
+		
 
-		<div id="winStory">
-			<h2>You Won!!</h2>
-			<p>Your lineage will continue for centuries to come.</p>
-			<p>How many more can you save?</p>
-			
-		</div>
-
-		<div id="lossStory">
-			
-		</div>
-
-		<div id="pressStart">
-			<h1>Press Start to Play</h1>
-		</div>
-
+		
 
 			<!-- <script src="assets/javascript/game.js"> -->
 			<!-- gameStart() -->
 		<script>	
 			// Word list for the game
-			var words = ["CONTROL", "VOLLEYBALL", "DISTANCE", "RUDDY", "PARTNER", "EIGHT", "LAME", "LOCKET", "GREASE", "AIRPLANE", "AMBITIOUS", "RULE", "ZEPHYR", "MERCIFUL", "BOAST", "AQUATIC", "FERTILE", "JAZZ",];
+			var words = ["ABRUPTLY","ABSURD","ABYSS","AFFIX","ASKEW","AVENUE","AWKWARD","AXIOM","AZURE","BAGPIPES","BANDWAGON","BANJO","BAYOU","BEEKEEPER","BIKINI","BLITZ","BLIZZARD","BOGGLE","BOOKWORM","BOXCAR","BOXFUL","BUCKAROO","BUFFALO","BUFFOON","BUXOM","BUZZARD","BUZZING","BUZZWORDS","CALIPH","COBWEB","COCKINESS","CROQUET","CRYPT","CURACAO","CYCLE","DAIQUIRI","DIRNDL","DISAVOW","DIZZYING","DUPLEX","DWARVES","EMBEZZLE","EQUIP","ESPIONAGE","EUOUAE","EXODUS","FAKING","FISHHOOK","FIXABLE","FJORD","FLAPJACK","FLOPPING","FLUFFINESS","FLYBY","FOXGLOVE","FRAZZLED","FRIZZLED","FUCHSIA","FUNNY","GABBY","GALAXY","GALVANIZE","GAZEBO","GIAOUR","GIZMO","GLOWWORM","GLYPH","GNARLY","GNOSTIC","GOSSIP","GROGGINESS","HAIKU","HAPHAZARD","HYPHEN","IATROGENIC","ICEBOX","INJURY","IVORY","IVY","JACKPOT","JAUNDICE","JAWBREAKER","JAYWALK","JAZZIEST","JAZZY","JELLY","JIGSAW","JINX","JIUJITSU","JOCKEY","JOGGING","JOKING","JOVIAL","JOYFUL","JUICY","JUKEBOX","JUMBO","KAYAK","KAZOO","KEYHOLE","KHAKI","KILOBYTE","KIOSK","KITSCH","KIWIFRUIT","KLUTZ","KNAPSACKNX","LENGTHS","LUCKY","LUXURY","LYMPH","MARQUIS","MATRIX","MEGAHERTZ","MICROWAVE","MNEMONIC","MYSTIFY","NAPHTHA","NIGHTCLUB","NOWADAYS","NUMBSKULL","NYMPH","ONYX","OVARY","OXIDIZE","OXYGEN","PAJAMA","PEEKABOO","PHLEGM","PIXEL","PIZAZZ","PNEUMONIA","POLKA","PSHAW","PSYCHE","PUPPY","PUZZLING","QUARTZ","QUEUE","QUIPS","QUIXOTIC","QUIZ","QUIZZES","QUORUM","RAZZMATAZZ","RHUBARB","RHYTHM","RICKSHAW","SCHNAPPS","SCRATCH","SHIV","SNAZZY","SPHINX","SPRITZ","SQUAWK","STAFF","STRENGTH","STRENGTHS","STRETCH","STRONGHOLD","STYMIED","SUBWAY","SWIVEL","SYNDROME","THRIFTLESS","THUMBSCREW","TOPAZ","TRANSCRIPT","TRANSGRESS","TRANSPLANT","TRIPHTHONG","TWELFTH","TWELFTHS","UNKNOWN","UNWORTHY","UNZIP","UPTOWN","VAPORIZE","VIXEN","VODKA","VOODOO","VORTEX","VOYEURISM","WALKWAY","WALTZ","WAVE","WAVY","WAXY","WELLSPRING","WHEEZY","WHISKEY","WHIZZING","WHOMEVER","WIMPY","WITCHCRAFT","WIZARD","WOOZY","WRISTWATCH","WYVERN","XYLOPHONE","YACHTSMAN","YIPPEE","YOKED","YOUTHFUL","YUMMY","ZEPHYR","ZIGZAG","ZIGZAGGING","ZILCH","ZIPPER","ZODIAC","ZOMBIE"];
+			var lossStatements = ["If at first you don't succeed, then skydiving isn't for you.","Honk if you love peace and quiet.","Remember half the people you know are also below average.","Nothing is foolproof to a talented fool.","He who laughs last thinks slowest.","The early bird may get the worm, but the second mouse gets the cheese.","Support bacteria - they're the only culture some people have.","If at first you don't succeed, you dead.","Experience is something you don't get until just after you need it.","Success always occurs in private and failure in full view.","Monday is an awful way to spend 1/7th of your life.","The sooner you fall behind the less you will need time to catch up.","If you think nobody cares, try missing a couple more words.","A blonde heard that accidents happen close to home so she moved!","Your IQ came back negative.","Thanks for explaining the word 'many' to me, it means a lot.","Artificial intelligence is no match for natural stupidity."];
+			var winStatements = ["Keep your face always toward the sunshine—and shadows will fall behind you.","It is always the simple that produces the marvelous.","The world is full of magical things patiently waiting for our wits to grow sharper.","Let us make our future now, and let us make our dreams tomorrow’s reality.","All you need is the plan, the road map, and the courage to press on to your destination.","The glow of one warm thought is to me worth more than money.","Once we believe in ourselves, we can risk curiosity, wonder, spontaneous delight, or any experience that reveals the human spirit.","The power of imagination makes us infinite.","Try to be a rainbow in someone’s cloud.","I believe that if one always looked at the skies, one would end up with wings.","I dwell in possibility.","Light tomorrow with today.","I arise full of eagerness and energy, knowing well what achievement lies ahead of me.","A No. 2 pencil and a dream can take you anywhere.","When the sun is shining I can do anything; no mountain is too high, no trouble too difficult to overcome.","Happiness is not something you postpone for the future; it is something you design for the present.","In a gentle way, you can shake the world.","Let your life lightly dance on the edges of time like dew on the tip of a leaf.","Follow your bliss and the universe will open doors where there were only walls.","Each day provides its own gifts.","Happiness is a butterfly, which when pursued, is always just beyond your grasp, but which, if you will sit down quietly, may alight upon you."]
 			var alphabet;
 			var winTally = 0;
 			var lossesTally = 0;
@@ -108,9 +145,8 @@
 			var bloodyTears = new Audio('assets/audio/bloodyTears.mp3');
 			var neckSnap = new Audio('assets/audio/neckSnap.mp3');
 			// victory music set to strangerthings.  add top 20 
-			var playlist = ["assets/audio/strangerThings.mp3", "assets/audio/axelF.mp3", "assets/audio/ghostBusters.mp3", "assets/audio/bakerStreet.mp3", "assets/audio/gbu.mp3", "assets/audio/rickRoll.mp3"];
-			var audio
-			;
+			var playlist = ["assets/audio/axelF.mp3", "assets/audio/ghostBusters.mp3", "assets/audio/bakerStreet.mp3", "assets/audio/gbu.mp3", "assets/audio/rickRoll.mp3"];
+			var audio;
 
 			// This function starts the game initially by pressing space bar, and allows the game to play again by pressing the space bar
 			function gameStart() {
@@ -131,22 +167,24 @@
 			function gameInitialize() {
 				alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 				guessTally = 13;
-				songSelection()
 				document.getElementById('guessedLetters').innerHTML = "";
 				document.querySelector("#wins").innerHTML = winTally;
 				document.querySelector("#losses").innerHTML = lossesTally;
-				document.querySelector("#guesses").innerHTML = guessTally;
+				document.getElementById('title').style.display='none';
+				document.getElementById('title2').style.display='grid';
 				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left13.png">';
 				document.getElementById('pressStart').style.display='none';
+				document.getElementById('playAgain').style.display='none';
 				document.getElementById('winStory').style.display='none';
-				console.log("hide winstory")
 				document.getElementById('lossStory').style.display='none';
 				document.getElementById('preStory').style.display='none';
 				document.getElementById('gameBoard').style.display='grid';
+				document.getElementById('scoreBoard').style.display='inline-block';
 			}
 
 			// This function selects the word and sets up the current word area
 			function wordSelection () {
+				songSelection()
 				// Resets the wordSelection
 				document.getElementById('gameWord').innerHTML = "";
 				// Selects a random word from the word list
@@ -161,14 +199,38 @@
 			}
 			
 			// This function selects a random song from the playlist
+			// function songSelection () {
+				
+			// 	songTrack = playlist[Math.floor(Math.random() * playlist.length)];
+			// 	var audio = new Audio();
+			// 	audio.src = songTrack
+			// 	audio.loop = true
+			// 	audio.play()
+			// }
+
 			function songSelection () {
 				
 				songTrack = playlist[Math.floor(Math.random() * playlist.length)];
-				var audio = new Audio();
-				audio.src = songTrack
-				audio.loop = true
-				audio.play()
+				document.getElementById('gameTrack').innerHTML = '<audio src="' + songTrack + '" autoplay="true" loop="true"></audio>';
+
+
+				
 			}
+
+			// function songSelection () {
+			// 	songTrack = playlist[Math.floor(Math.random() * playlist.length)];
+			// 	this.song = document.createElement("audio");
+			// 	this.song.src = songTrack;
+			// 	this.song.loop = true;
+			// 	document.body.appendChild(this.sound);
+			// 	this.play = function(){
+			// 		this.song.play();
+			// 	}
+			// 	this.stop = function(){
+			// 		this.song.pause();
+			// 	}
+
+			// }
 
 			// This function updates the remaining letters with any defined letters remaining in the alphabet array
 			function lettersRemaining() {
@@ -223,7 +285,6 @@
 			// This function runs when a guess doesn't match any letters in the current word
 			function badGuess() {
 				guessTally = parseInt(guessTally) - 1;
-				document.getElementById('guesses').innerHTML = guessTally;
 				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
 				// loss condition
 				if(guessTally == 0) {
@@ -236,27 +297,64 @@
 			// This function processes when you've won, handles the win screen
 			function youWon() {
 				winTally = parseInt(winTally) + 1;
-				bloodyTears.play()
+				document.getElementById('gameTrack').innerHTML = '<audio src="assets/audio/bloodyTears.mp3" autoplay="true" loop="true"></audio>';
 				document.getElementById('gameBoard').style.display='none';
-				document.getElementById('winStory').style.display='grid';
-				document.getElementById('pressStart').style.display='grid';
+				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left11.png">';
+				setTimeout(postGameWin, 500)
 				gameStart()
 			}
+
+			function postGameWin() {
+				
+				winTally = parseInt(winTally) + 1;
+				
+				generateWinScreen()
+				document.getElementById('winStory').style.display='grid';
+				document.getElementById('playAgain').style.display='grid';
+			}
+
+			function generateWinScreen() {
+				var youRule;
+				if (winTally < winStatements.length) {
+					youRule = winStatements[winTally - 1];
+				} else {
+					youRule = winStatements[winStatements.length - 1];
+				}
+				document.getElementById("winStory").innerHTML = '<h2>You won!!</h2><p>A special message for you:<br><br>' + youRule + '</p><p>How many people can you save?</p>';
+			}
+
 
 			// This function process when you've lost, handles the end of the hangman
 			function youLost() {
-				neckSnap.play()
-				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left14.png">';
-				lossesTally = parseInt(lossesTally) + 1;
 				document.getElementById('gameBoard').style.display='none';
-				generateLossScreen()
-				document.getElementById('lossStory').style.display='grid';
-				document.getElementById('pressStart').style.display='grid';
+				document.getElementById('gameTrack').innerHTML = '';
+				setTimeout(hanging, 500)
+				setTimeout(postGameLoss, 3500)
 				gameStart()
 			}
 
+			function hanging () {
+				neckSnap.play()
+				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left14.png">';
+			}
+
+			function postGameLoss() {
+				
+				lossesTally = parseInt(lossesTally) + 1;
+				
+				generateLossScreen()
+				document.getElementById('lossStory').style.display='grid';
+				document.getElementById('playAgain').style.display='grid';
+			}
+
 			function generateLossScreen() {
-				document.getElementById("lossStory").innerHTML = '<p>The word was <h1>' + currentWord + '</h1> you dope</h1><h2>You Lost!!</h2><p>Your lineage has ended.  The red witch was victorious, and there will be no more dopes like you.</p><p>How many more dopes will you kill?</p>';
+				var youSuck;
+				if (lossesTally < lossStatements.length) {
+					youSuck = lossStatements[lossesTally - 1];
+				} else {
+					youSuck = lossStatements[lossStatements.length - 1];
+				}
+				document.getElementById("lossStory").innerHTML = '<h2>You Lost!!</h2><p>The word was</p><h1>' + currentWord + '</h1><p>A special message for you:<br><br>' + youSuck + '</p><p>How many more dopes will you kill?</p>';
 			}
 
 			gameStart()

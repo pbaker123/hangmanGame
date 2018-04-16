@@ -15,27 +15,6 @@ p {
 	display: inline-block;
 }
 
-/* make the title like stranger things, background same sort of color have hanging tree and the hung man */
-
-/* 13 divisions of the man
-
-
-1. Rope
-2. Noose
-3. head
-4. torso
-5. rt shoulder
-6. left shoulder
-7. body
-8 rt arm
-9 left arm
-10 half left leg
-11 2nd half of left leg
-12 half of rt leg
-13 second half of rt leg*/
-
-/* Try to draw this on css canvas */
-
 .mainGridContainer {
 	position: relative;
 	display: grid;
@@ -56,6 +35,17 @@ p {
 	width: 1000px;
 	padding: 30px;
 	justify-content: center;
+	z-index:200;
+	
+}
+
+.headerContainer2 {
+	display: none;
+	grid-area: 1 / 1 / 2 / 2;
+	width: 1000px;
+	padding: 30px;
+	justify-content: center;
+	
 	
 }
 
@@ -100,39 +90,7 @@ p {
 	opacity: .5;
 }
 
-.scoreLine {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-area: 1 / 1 / 2 / 2;
-}
 
-.gameBoardScoreboardLabelWins {
-	display: grid;
-	grid-area: 1 / 1 / 2 / 2;
-	text-align: right;
-	margin: auto 0;
-
-}
-
-.gameBoardScoreboardResultWins {
-	display: grid;
-	grid-area: 1 / 2 / 2 / 3;
-	text-align: center;
-	color: red !important;
-}
-
-.gameBoardScoreboardLabelLoss {
-	display: grid;
-	grid-area: 1 / 3 / 2 / 4;
-	text-align: right;
-}
-
-.gameBoardScoreboardResultLoss {
-	display: grid;
-	grid-area: 1 / 4 / 2 / 5;
-	text-align: left;
-	color: red !important;
-}
 
 .currentWordLabel {
 	display: grid;
@@ -153,20 +111,6 @@ p {
     1px -1px 0 red,
     -1px 1px 0 red,
     1px 1px 0 red; 
-}
-
-.numberOfGuessesLabel {
-	display: grid;
-	grid-area: 4 / 1 / 5 / 2;
-	text-align: center;
-	justify-content: center;
-	margin: auto 0;
-}
-
-.numberOfGuesses {
-	display: grid;
-	grid-area: 5 / 1 / 6 / 2;
-	text-align: center;
 }
 
 .letterPoolLabel {
@@ -206,25 +150,19 @@ p {
 	background-image: 
 }
 
-#preStory {
-	position: absolute;
-	top: 400px;
-	left: 350px;
-	width: 600px;
-	color: #FFFFFF;
-	text-align: center;
-	font-family: arial, sans serif;
-}
-
 h1{
 	color: red !important;
 	font-weight: 400;
-	padding: 5px;
+	padding: 0px;
+	margin: 5px;
+	line-height: auto;
+	height: 32px !important;
 }
 
 h2{
 	color: red !important;
 	font-weight: 400;
+	margin: 4px;
 }
 
 #lossStory {
@@ -233,16 +171,17 @@ h2{
 	background-color: black;
 	border: dotted 3px white;
 	color: white;
-	top: 258px;
-	right: 132px;
-	width: 300px;
-	height: 350px;
+	top: 380px;
+	right: 300px;
+	width: 400px;
+	height: autopx;
 	grid-template-columns: auto;
 	opacity: .5;
 	z-index: 400;
 	color: #FFFFFF;
 	text-align: center;
 	font-family: arial, sans serif;
+	padding: 5px;
 }
 
 #winStory {
@@ -251,14 +190,26 @@ h2{
 	background-color: black;
 	border: dotted 3px white;
 	color: white;
-	top: 258px;
-	right: 132px;
-	width: 300px;
-	height: 350px;
+	top: 380px;
+	right: 300px;
+	width: 400px;
+	height: auto;
 	grid-template-columns: auto;
 	opacity: .5;
 	z-index: 400;
 	color: #FFFFFF;
+	text-align: center;
+	font-family: arial, sans serif;
+	padding: 5px;
+}
+
+#preStory {
+	position: absolute;
+	bottom: -450px;
+	left: 200px;
+	width: 600px;
+	color: #FFFFFF;
+	height: 300px;
 	text-align: center;
 	font-family: arial, sans serif;
 }
@@ -268,12 +219,101 @@ h2{
 	position: absolute;
 	background-color: black;
 	top: 800px;
-	right: 450px;
-	width: 300px;
+	left: 200px;
+	width: 600px;
 	height: 50px;
-	grid-template-columns: auto;
+	
 	z-index: 400;
 	color: #FFFFFF;
 	text-align: center;
 	font-family: arial, sans serif;
+}
+
+#playAgain {
+	display: none;
+	position: absolute;
+	background-color: black;
+	top: 800px;
+	left: 200px;
+	width: 600px;
+	height: 50px;
+	
+	z-index: 400;
+	color: #FFFFFF;
+	text-align: center;
+	font-family: arial, sans serif;
+}
+
+#scoreBoard {
+	display: none;
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+	width: 90px;
+	height: 50px;
+	z-index: 400;
+	color: #FFFFFF;
+	text-align: center;
+	font-family: arial, sans serif;
+}
+
+#target{
+    position:absolute;
+    top:-3500px;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+    font-size:30px;
+    text-align:justify;
+    font-family:sans-serif;
+}
+#target>div{
+    padding-top:3500px;
+    animation:autoscroll 1000s linear;
+}
+.scrollContainer{
+    content:'';
+    position:absolute;
+    top:0;
+    bottom:0px;
+    left: 30px;
+    left:0;
+    right:0;
+    background:linear-gradient(top,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
+    background:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
+    pointer-events:none;
+    width: 600px;
+}
+
+.scrollContainer2{
+    
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    transform-origin:50% 100%;
+    transform:perspective(300px) rotateX(20deg);
+}
+html{
+    color:white;
+    background:black;
+}
+@keyframes autoscroll{
+    to{
+        margin-top:-50000px;
+    }    
+}
+
+.floatLeft {
+	position: relative;
+	float: left;
+}
+
+.floatRight {
+	position: relative;
+	float: right;
+	color: red !important;
+	font-size: 20px;
 }
