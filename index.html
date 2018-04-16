@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Hangman</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, 1094px">
+		<link 
+			href="assets/css/reset.css"
+			rel="stylesheet" 
+			type="text/css" 
+			>
+		<link 
+			href="assets/css/style.css"
+			rel="stylesheet" 
+			type="text/css" 
+			>
+	</head>
+
+	<body>
+		<div class="mainGridContainer">
+			<div class="headerContainer">
+				<img src="assets/images/title.png">
+			</div>
+			<div class="contentContainer">
+				<div class="leftContent" id="updateImage">
+					<img "src="assets/images/left13.png">
+				</div>
+				<div class="gameContent">
+					<div class="gameBoard" id="gameBoard">
+						<div class="scoreLine">
+							<div class="gameBoardScoreboardLabelWins">
+								W: 
+							</div>
+							<div class=".gameBoardScoreboardResultWins" id="wins">
+								<!-- Placeholder for wins -->
+							</div>
+							<div class="gameBoardScoreboardLabelLoss">
+								L: 
+							</div>
+							<div class=".gameBoardScoreboardResultLoss" id="losses">
+								<!-- Placeholder for losses -->
+							</div>
+						</div>
+						
+						<div class="currentWordLabel">
+							Current word
+						</div>
+						<div class="currentWord" id="gameWord">
+							<!-- Placeholder for the current word -->
+						</div>
+						<div class="numberOfGuessesLable">
+							Remaining Guesses:
+						</div>
+						<div class="numberOfGuesses" id="guesses">
+							<!-- Placeholder for the remaining guesses -->
+						</div>
+						<div class="letterPoolLable">
+							Letter Pool
+						</div>
+						<div class="letterPool" id="remainingLetters">
+							<!-- Placeholder for letters to guess -->
+						</div>
+						<div class="spentLettersLable">
+							Spent Letters
+						</div>
+						<div class="spentLetters" id="guessedLetters">
+							<!-- Placeholder for letters already guessed -->
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="preStory">
+			<h1>In the year 540...</h1> 
+			<p>An evil red witch is hanging all the illeterates. It is imparative that you guess the code word to prove your literacy, and thus save yourself from a neck-breaking fate.</p>
+			<p>Type your letters to guess the words, but be careful, after 13 wrong guesses, you will meet your fate.</p>
+			
+		</div>
+
+		<div id="winStory">
+			<h2>You Won!!</h2>
+			<p>Your lineage will continue for centuries to come.</p>
+			<p>How many more can you save?</p>
+			
+		</div>
+
+		<div id="lossStory">
+			
+		</div>
+
+		<div id="pressStart">
+			<h1>Press Start to Play</h1>
+		</div>
+
+
+			<!-- <script src="assets/javascript/game.js"> -->
+			<!-- gameStart() -->
+		<script>	
+			// Word list for the game
+			var words = ["CONTROL", "VOLLEYBALL", "DISTANCE", "RUDDY", "PARTNER", "EIGHT", "LAME", "LOCKET", "GREASE", "AIRPLANE", "AMBITIOUS", "RULE", "ZEPHYR", "MERCIFUL", "BOAST", "AQUATIC", "FERTILE", "JAZZ",];
+			var alphabet;
+			var winTally = 0;
+			var lossesTally = 0;
+			var guessTally;
+			var bloodyTears = new Audio('assets/audio/bloodyTears.mp3');
+			var neckSnap = new Audio('assets/audio/neckSnap.mp3');
+			// victory music set to strangerthings.  add top 20 
+			var playlist = ["assets/audio/strangerThings.mp3", "assets/audio/axelF.mp3", "assets/audio/ghostBusters.mp3", "assets/audio/bakerStreet.mp3", "assets/audio/gbu.mp3", "assets/audio/rickRoll.mp3"];
+			var audio
+			;
+
+			// This function starts the game initially by pressing space bar, and allows the game to play again by pressing the space bar
+			function gameStart() {
+				document.onkeyup = function(event) {
+					var restart = event.key;
+					if(restart == " ") {
+						gameInitialize()
+						wordSelection()
+						lettersRemaining()
+						document.onkeyup = function(event) {
+							guessProcessing()
+						}
+					}
+				}
+			}
+
+			// This function resets the variables and updates the guessed letters, wins, and remaining guesses
+			function gameInitialize() {
+				alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+				guessTally = 13;
+				songSelection()
+				document.getElementById('guessedLetters').innerHTML = "";
+				document.querySelector("#wins").innerHTML = winTally;
+				document.querySelector("#losses").innerHTML = lossesTally;
+				document.querySelector("#guesses").innerHTML = guessTally;
+				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left13.png">';
+				document.getElementById('pressStart').style.display='none';
+				document.getElementById('winStory').style.display='none';
+				console.log("hide winstory")
+				document.getElementById('lossStory').style.display='none';
+				document.getElementById('preStory').style.display='none';
+				document.getElementById('gameBoard').style.display='grid';
+			}
+
+			// This function selects the word and sets up the current word area
+			function wordSelection () {
+				// Resets the wordSelection
+				document.getElementById('gameWord').innerHTML = "";
+				// Selects a random word from the word list
+				currentWord = words[Math.floor(Math.random() * words.length)];
+				currentWordLettersRemaining = currentWord.length
+					for(var i = 0; i < currentWord.length; i++) {
+						// Writes each letter in a div with numbered id (letter#) and an underscore placeholder
+					var letter = '<div class="gameWordPiece" style="float: left; margin-right: 5px" id="letter' + i  + '">' + "_" + '</div>';
+					// Writes each iteration of the variable letter before the end of the div id gameWord
+					document.getElementById('gameWord').insertAdjacentHTML('beforeend', letter)
+				}
+			}
+			
+			// This function selects a random song from the playlist
+			function songSelection () {
+				
+				songTrack = playlist[Math.floor(Math.random() * playlist.length)];
+				var audio = new Audio();
+				audio.src = songTrack
+				audio.loop = true
+				audio.play()
+			}
+
+			// This function updates the remaining letters with any defined letters remaining in the alphabet array
+			function lettersRemaining() {
+				// Resets the remaining letters
+				document.getElementById('remainingLetters').innerHTML = "";
+				// Updates the reamining letters
+				for(var j = 0; j < alphabet.length; j++) {
+					var alphabetRemaining = '<div style="float: left; margin-right: 5px">' + alphabet[j] + '</div>';
+					if(alphabet[j] !== undefined) {
+						document.getElementById('remainingLetters').insertAdjacentHTML('beforeend', alphabetRemaining);
+					}
+				}
+			}
+
+			// This function processes each guess: determines if it is a valid choice; determines if it is the correct letter for each letter of the current word; 
+			function guessProcessing() {
+				// Determines which key was pressed.
+				var guess = event.key.toUpperCase();
+				var guessedAlphabet = alphabet.indexOf(guess);
+				if(guessedAlphabet >= 0) {
+					// Posts letters already guessed the variable guess comes from the user input
+					var alphabetGuessed = '<div class="gameWordPiece" style="float: left; margin-right: 5px" id="guesses' + guess  + '">' + guess + '</div>'
+					document.getElementById('guessedLetters').insertAdjacentHTML('beforeend', alphabetGuessed);
+					delete alphabet[guessedAlphabet];
+					lettersRemaining()
+					// Look to compare guess to the currentWord.  If it exists innerHTML by id for "letter" + loop variable and reduce the currentWordLettersRemaining variable by 1.  If it equals 0 game wins.  Play a sound.  
+					if(guessedAlphabet >= 0) {
+						// Loops through each currentword div to check if it matches the guess, if it does it overwrites _ with the letter
+						if(currentWord.indexOf(guess) >= 0) {
+							goodGuess()
+						} else {
+							// If it doesn't exist reduce guessTally by 1, show a hangman piece.  If guessTally = 0 game over animate the game piece to "fall" and the head to "snap" and play a crunching sound
+							badGuess()
+						}
+					}
+				}
+			}
+
+			function goodGuess() {
+				var guess = event.key.toUpperCase();
+				for(var k = 0; k < currentWord.length; k++) {
+					if(currentWord.charAt(k) == guess) {
+						document.getElementById("letter" + k).innerHTML = guess;
+						currentWordLettersRemaining = currentWordLettersRemaining - 1;
+						if(currentWordLettersRemaining == 0) {
+							youWon()
+						}
+					}
+				}
+			}
+
+			// This function runs when a guess doesn't match any letters in the current word
+			function badGuess() {
+				guessTally = parseInt(guessTally) - 1;
+				document.getElementById('guesses').innerHTML = guessTally;
+				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
+				// loss condition
+				if(guessTally == 0) {
+					setTimeout(youLost, 500);
+				}
+			}
+
+
+
+			// This function processes when you've won, handles the win screen
+			function youWon() {
+				winTally = parseInt(winTally) + 1;
+				bloodyTears.play()
+				document.getElementById('gameBoard').style.display='none';
+				document.getElementById('winStory').style.display='grid';
+				document.getElementById('pressStart').style.display='grid';
+				gameStart()
+			}
+
+			// This function process when you've lost, handles the end of the hangman
+			function youLost() {
+				neckSnap.play()
+				document.getElementById('updateImage').innerHTML = '<img src="assets/images/left14.png">';
+				lossesTally = parseInt(lossesTally) + 1;
+				document.getElementById('gameBoard').style.display='none';
+				generateLossScreen()
+				document.getElementById('lossStory').style.display='grid';
+				document.getElementById('pressStart').style.display='grid';
+				gameStart()
+			}
+
+			function generateLossScreen() {
+				document.getElementById("lossStory").innerHTML = '<p>The word was <h1>' + currentWord + '</h1> you dope</h1><h2>You Lost!!</h2><p>Your lineage has ended.  The red witch was victorious, and there will be no more dopes like you.</p><p>How many more dopes will you kill?</p>';
+			}
+
+			gameStart()
+		</script>
+		
+
+	</body>
+
+</html>
