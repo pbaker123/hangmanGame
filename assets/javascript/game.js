@@ -3,7 +3,7 @@ var playlist = ["assets/audio/axelF.mp3", "assets/audio/ghostBusters.mp3", "asse
 var winStatements = ["Keep your face always toward the sunshine—and shadows will fall behind you.","It is always the simple that produces the marvelous.","The world is full of magical things patiently waiting for our wits to grow sharper.","Let us make our future now, and let us make our dreams tomorrow’s reality.","All you need is the plan, the road map, and the courage to press on to your destination.","The glow of one warm thought is to me worth more than money.","Once we believe in ourselves, we can risk curiosity, wonder, spontaneous delight, or any experience that reveals the human spirit.","The power of imagination makes us infinite.","Try to be a rainbow in someone’s cloud.","I believe that if one always looked at the skies, one would end up with wings.","I dwell in possibility.","Light tomorrow with today.","I arise full of eagerness and energy, knowing well what achievement lies ahead of me.","A No. 2 pencil and a dream can take you anywhere.","When the sun is shining I can do anything; no mountain is too high, no trouble too difficult to overcome.","Happiness is not something you postpone for the future; it is something you design for the present.","In a gentle way, you can shake the world.","Let your life lightly dance on the edges of time like dew on the tip of a leaf.","Follow your bliss and the universe will open doors where there were only walls.","Each day provides its own gifts.","Happiness is a butterfly, which when pursued, is always just beyond your grasp, but which, if you will sit down quietly, may alight upon you."]
 var words = ["ABRUPTLY","ABSURD","ABYSS","AFFIX","ASKEW","AVENUE","AWKWARD","AXIOM","AZURE","BAGPIPES","BANDWAGON","BANJO","BAYOU","BEEKEEPER","BIKINI","BLITZ","BLIZZARD","BOGGLE","BOOKWORM","BOXCAR","BOXFUL","BUCKAROO","BUFFALO","BUFFOON","BUXOM","BUZZARD","BUZZING","BUZZWORDS","CALIPH","COBWEB","COCKINESS","CROQUET","CRYPT","CURACAO","CYCLE","DAIQUIRI","DIRNDL","DISAVOW","DIZZYING","DUPLEX","DWARVES","EMBEZZLE","EQUIP","ESPIONAGE","EUOUAE","EXODUS","FAKING","FISHHOOK","FIXABLE","FJORD","FLAPJACK","FLOPPING","FLUFFINESS","FLYBY","FOXGLOVE","FRAZZLED","FRIZZLED","FUCHSIA","FUNNY","GABBY","GALAXY","GALVANIZE","GAZEBO","GIAOUR","GIZMO","GLOWWORM","GLYPH","GNARLY","GNOSTIC","GOSSIP","GROGGINESS","HAIKU","HAPHAZARD","HYPHEN","IATROGENIC","ICEBOX","INJURY","IVORY","IVY","JACKPOT","JAUNDICE","JAWBREAKER","JAYWALK","JAZZIEST","JAZZY","JELLY","JIGSAW","JINX","JIUJITSU","JOCKEY","JOGGING","JOKING","JOVIAL","JOYFUL","JUICY","JUKEBOX","JUMBO","KAYAK","KAZOO","KEYHOLE","KHAKI","KILOBYTE","KIOSK","KITSCH","KIWIFRUIT","KLUTZ","KNAPSACK","LENGTHS","LUCKY","LUXURY","LYMPH","MARQUIS","MATRIX","MEGAHERTZ","MICROWAVE","MNEMONIC","MYSTIFY","NAPHTHA","NIGHTCLUB","NOWADAYS","NUMBSKULL","NYMPH","ONYX","OVARY","OXIDIZE","OXYGEN","PAJAMA","PEEKABOO","PHLEGM","PIXEL","PIZAZZ","PNEUMONIA","POLKA","PSHAW","PSYCHE","PUPPY","PUZZLING","QUARTZ","QUEUE","QUIPS","QUIXOTIC","QUIZ","QUIZZES","QUORUM","RAZZMATAZZ","RHUBARB","RHYTHM","RICKSHAW","SCHNAPPS","SCRATCH","SHIV","SNAZZY","SPHINX","SPRITZ","SQUAWK","STAFF","STRENGTH","STRENGTHS","STRETCH","STRONGHOLD","STYMIED","SUBWAY","SWIVEL","SYNDROME","THRIFTLESS","THUMBSCREW","TOPAZ","TRANSCRIPT","TRANSGRESS","TRANSPLANT","TRIPHTHONG","TWELFTH","TWELFTHS","UNKNOWN","UNWORTHY","UNZIP","UPTOWN","VAPORIZE","VIXEN","VODKA","VOODOO","VORTEX","VOYEURISM","WALKWAY","WALTZ","WAVE","WAVY","WAXY","WELLSPRING","WHEEZY","WHISKEY","WHIZZING","WHOMEVER","WIMPY","WITCHCRAFT","WIZARD","WOOZY","WRISTWATCH","WYVERN","XYLOPHONE","YACHTSMAN","YIPPEE","YOKED","YOUTHFUL","YUMMY","ZEPHYR","ZIGZAG","ZIGZAGGING","ZILCH","ZIPPER","ZODIAC","ZOMBIE"];
 
-var alphabet, audio, guessTally, currentWord, currentWordLettersRemaining;
+var alphabet, audio, guessTally, currentWord, currentWordLettersRemaining, guess;
 var again = document.getElementById('playAgain');
 var bloodyTears = new Audio('assets/audio/bloodyTears.mp3');
 var gBoard = document.getElementById('gameBoard');
@@ -24,6 +24,7 @@ var update = document.getElementById('updateImage');
 var wins = document.querySelector("#wins");
 var winTally = 0;
 var wStory = document.getElementById('winStory');
+var event;
 
 
 
@@ -126,52 +127,44 @@ function lettersRemaining() {
 // This function processes each guess: determines if it is a valid choice; determines if it is the correct letter for each letter of the current word; 
 function guessProcessing() {
 	// Determines which key was pressed.
-	var guess = event.key.toUpperCase();
-	var guessedAlphabet = alphabet.indexOf(guess);
-	if(guessedAlphabet >= 0) {
-		// Posts letters already guessed the variable guess comes from the user input
-		var alphabetGuessed = '<div class="gameWordPiece" style="float: left; margin-right: 5px" id="guesses' + guess  + '">' + guess + '</div>'
-		gLetters.insertAdjacentHTML('beforeend', alphabetGuessed);
-		delete alphabet[guessedAlphabet];
-		lettersRemaining()
-		// Look to compare guess to the currentWord.  If it exists innerHTML by id for "letter" + loop variable and reduce the currentWordLettersRemaining variable by 1.  If it equals 0 game wins.  Play a sound.  
+	document.onkeyup = function(event) {
+		var guess = event.key.toUpperCase();
+		var guessedAlphabet = alphabet.indexOf(guess);
 		if(guessedAlphabet >= 0) {
-			// Loops through each currentword div to check if it matches the guess, if it does it overwrites _ with the letter
-			if(currentWord.indexOf(guess) >= 0) {
-				goodGuess()
-			} else {
-				// If it doesn't exist reduce guessTally by 1, show a hangman piece.  If guessTally = 0 game over animate the game piece to "fall" and the head to "snap" and play a crunching sound
-				badGuess()
+			// Posts letters already guessed the variable guess comes from the user input
+			var alphabetGuessed = '<div class="gameWordPiece" style="float: left; margin-right: 5px" id="guesses' + guess  + '">' + guess + '</div>'
+			gLetters.insertAdjacentHTML('beforeend', alphabetGuessed);
+			delete alphabet[guessedAlphabet];
+			lettersRemaining()
+			// Look to compare guess to the currentWord.  If it exists innerHTML by id for "letter" + loop variable and reduce the currentWordLettersRemaining variable by 1.  If it equals 0 game wins.  Play a sound.  
+			if(guessedAlphabet >= 0) {
+				// Loops through each currentword div to check if it matches the guess, if it does it overwrites _ with the letter
+				if(currentWord.indexOf(guess) >= 0) {
+					for(var k = 0; k < currentWord.length; k++) {
+						if(currentWord.charAt(k) == guess) {
+							document.getElementById("letter" + k).innerHTML = guess;
+							currentWordLettersRemaining = currentWordLettersRemaining - 1;
+							if(currentWordLettersRemaining == 0) {
+								setTimeout(youWon, 750)
+							}
+						}
+					}
+				} else {
+					// If it doesn't exist reduce guessTally by 1, show a hangman piece.  If guessTally = 0 game over animate the game piece to "fall" and the head to "snap" and play a crunching sound
+					guessTally = parseInt(guessTally) - 1;
+					if (guessTally >= 0) {
+						update.innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
+					} else {
+						// protects against fast typers getting to -1 score breaking the left image
+						update.innerHTML = '<img src="assets/images/left0.png">'
+					}
+					// loss condition
+					if(guessTally == 0) {
+						setTimeout(youLost, 750);
+					}
+				}
 			}
 		}
-	}
-}
-
-function goodGuess() {
-	var guess = event.key.toUpperCase();
-	for(var k = 0; k < currentWord.length; k++) {
-		if(currentWord.charAt(k) == guess) {
-			document.getElementById("letter" + k).innerHTML = guess;
-			currentWordLettersRemaining = currentWordLettersRemaining - 1;
-			if(currentWordLettersRemaining == 0) {
-				setTimeout(youWon, 750)
-			}
-		}
-	}
-}
-
-// This function runs when a guess doesn't match any letters in the current word
-function badGuess() {
-	guessTally = parseInt(guessTally) - 1;
-	if (guessTally >= 0) {
-		update.innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
-	} else {
-		// protects against fast typers getting to -1 score breaking the left image
-		update.innerHTML = '<img src="assets/images/left0.png">'
-	}
-	// loss condition
-	if(guessTally == 0) {
-		setTimeout(youLost, 750);
 	}
 }
 
