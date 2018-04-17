@@ -249,17 +249,16 @@ h2{
 	background-color: black;
 	border: dotted 3px white;
 	color: white;
-	top: 380px;
-	right: 300px;
+	top: 290px;
+	right: 250px;	
 	width: 400px;
-	height: autopx;
 	grid-template-columns: auto;
 	opacity: .5;
 	z-index: 400;
 	color: #FFFFFF;
 	text-align: center;
 	font-family: arial, sans serif;
-	padding: 5px;
+	padding: 25px;
 }
 
 #winStory {
@@ -268,17 +267,16 @@ h2{
 	background-color: black;
 	border: dotted 3px white;
 	color: white;
-	top: 380px;
-	right: 300px;
+	top: 290px;
+	right: 250px;
 	width: 400px;
-	height: auto;
 	grid-template-columns: auto;
 	opacity: .5;
 	z-index: 400;
 	color: #FFFFFF;
 	text-align: center;
 	font-family: arial, sans serif;
-	padding: 5px;
+	padding: 25px;
 }
 
 #preStory {
