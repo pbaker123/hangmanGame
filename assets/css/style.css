@@ -10,8 +10,10 @@ p {
 .gameWordPiece {
 	font-family: courier;
 	border-bottom: 2px black solid;
-	margin: 0px 3px;
+	margin-right: 10px;
 	display: inline-block;
+	float: left;
+
 }
 
 .mainGridContainer {
@@ -121,8 +123,6 @@ p {
 .gameBoardRow3 {
 	display: flex;
 	justify-content: center;
-	align-content: center;
-	margin: 0px auto;
 	grid-area: 3 / 1 / 4 / 2;
 	height: 144px;
 	font-size: 24px !important;
@@ -136,7 +136,7 @@ p {
 }
 
 .gameBoardRow3 > div {
-	margin: auto;
+	margin: auto 5px;
 }
 
 .gameBoardRow4 {
