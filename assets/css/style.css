@@ -63,10 +63,12 @@ p {
 	display: grid;
 	grid-area: 1 / 1 / 2 / 2;
 	width: 600px;
+	height: 858px;
 }
 
-.gameContent {
-	display: block;
+#gameContent {
+	/*display: block;*/
+	display: none;
 	position: relative;
 	grid-area: 1 / 2 / 1 / 3;
 	width: 400px;
@@ -281,7 +283,7 @@ h2{
 
 #preStory {
 	position: absolute;
-	bottom: -450px;
+	bottom: 150px;
 	left: 200px;
 	width: 600px;
 	color: #FFFFFF;
@@ -293,7 +295,7 @@ h2{
 #pressStart {
 	display: grid;
 	position: absolute;
-	background-color: black;
+	
 	top: 800px;
 	left: 200px;
 	width: 600px;
@@ -356,8 +358,8 @@ h2{
     left: 30px;
     left:0;
     right:0;
-    background:linear-gradient(top,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
-    background:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
+    /*background:linear-gradient(top,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
+    background:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0) 100%);*/
     pointer-events:none;
     width: 600px;
 }
