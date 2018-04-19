@@ -179,7 +179,7 @@ function generateWinScreen() {
 function postGameWin() {
 	audio.pause();
 	audio.currentTime = 0;
-	audio = getElementById('bloodytears');
+	audio = document.getElementById('bloodytears');
 	audio.play();
 	gBoard.style.display='none';
 	update.innerHTML = '<img src="assets/images/left11.png">';
@@ -213,6 +213,7 @@ function hanging () {
 }
 
 function postGameLoss() {
+	neckSnap.pause()
 	lossesTally = parseInt(lossesTally) + 1;
 	wins.innerHTML = winTally;
 	loss.innerHTML = lossesTally;
