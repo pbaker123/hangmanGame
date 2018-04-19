@@ -5,15 +5,23 @@ html {
 
 p {
 	color: white;
+	margin-bottom: 24px;
 }
 
-.gameWordPiece {
-	font-family: courier;
-	border-bottom: 2px black solid;
-	margin-right: 10px;
-	display: inline-block;
-	float: left;
+h1{
+	color: red !important;
+	font-weight: 700 !important;
+	padding: 0px;
+	margin: 24px;
+	font-size: 32px;
+	height: 32px !important;
+}
 
+h2{
+	color: red !important;
+	font-weight: 400;
+	margin-bottom: 18px;
+	font-size: 24px;
 }
 
 .mainGridContainer {
@@ -30,24 +38,20 @@ p {
 	padding: 0px;
 }
 
-.headerContainer {
-	display: grid;
+.headerContainer, .headerContainer2 {
 	grid-area: 1 / 1 / 2 / 2;
 	width: 1000px;
 	padding: 30px;
 	justify-content: center;
-	z-index:200;
-	
+}
+
+.headerContainer {
+	display: grid;
+	z-index: 1;
 }
 
 .headerContainer2 {
 	display: none;
-	grid-area: 1 / 1 / 2 / 2;
-	width: 1000px;
-	padding: 30px;
-	justify-content: center;
-	
-	
 }
 
 .contentContainer {
@@ -56,7 +60,6 @@ p {
 	width: 1100px;
 	grid-template-columns: 600px 400px;
 	justify-content: center;
-	
 }
 
 .leftContent {
@@ -67,16 +70,13 @@ p {
 }
 
 #gameContent {
-	/*display: block;*/
 	display: none;
 	position: relative;
 	grid-area: 1 / 2 / 1 / 3;
 	width: 400px;
 	background-image: url('../images/righthalf.png');
-	grid-template-columns: 400px;
 	background-size: 400px;
-	z-index: 20;
-	grid-template-columns: 300px;
+	z-index: 1;
 }
 
 .gameBoard {
@@ -89,25 +89,32 @@ p {
 	width: 300px;
 	height: 350px;
 	display: none;
-	grid-template-columns: auto;
+	grid-template-columns: 1fr;
 	opacity: .5;
-	justify-content: center;
 }
 
-.gameBoardRow1 {
+.gameBoardRow1, .gameBoardRow5 {
 	display: grid;
-	grid-area: 1 / 1 / 2 / 2;
 	height: 20px;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
 	width: 125px;
 	margin: 0px auto;
 	border: 1px white solid;
-	border-top: none;
 	text-align: center;
 }
 
-.gameBoardRow2 {
+.gameBoardRow1 {
+	grid-area: 1 / 1 / 2 / 2;
+	border-top: none;
+}
+
+.gameBoardRow5 {
+	grid-area: 5 / 1 / 6 / 2;
+	border-bottom: none;
+}
+
+.gameBoardRow2, .gameBoardRow4 {
 	display: flex;
 	flex-wrap: wrap;
 	grid-area: 2 / 1 / 3 / 2;
@@ -115,102 +122,65 @@ p {
 	font-family: Courier, sans-serif;
 	font-size: 20px;
 	font-color: white;
-	bottom-border: 2px white solid;
 	padding: 10px;
-	align-content: center;
 	justify-content: center;
+}
+
+.gameBoardRow2 {
+	grid-area: 2 / 1 / 3 / 2;
 	border-bottom: 2px red dotted;
+}
+
+.gameBoardRow4 {
+	grid-area: 4 / 1 / 5 / 2;
+	border-top: 2px red dotted;
+}
+
+.gameBoardRow4 > div {
+	float: left;
+	margin-right: 5px;
 }
 
 .gameBoardRow3 {
 	display: flex;
 	justify-content: center;
-	grid-area: 3 / 1 / 4 / 2;
 	height: 144px;
 	font-size: 24px !important;
 	color: black;
 	font-weight: bolder;
-	text-shadow:
-    -1px -1px 0 red,
-    1px -1px 0 red,
-    -1px 1px 0 red,
-    1px 1px 0 red; 
+	text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red; 
 }
 
 .gameBoardRow3 > div {
 	margin: auto 5px;
-}
-
-.gameBoardRow4 {
-	display: flex;
-	flex-wrap: wrap;
-	grid-area: 4 / 1 / 5 / 2;
-	height: 60px;
-	font-family: Courier, sans-serif;
-	font-size: 20px;
-	font-color: white;
-	bottom-border: 2px white solid;
-	padding: 10px;
-	align-content: center;
-	justify-content: center;
-	border-top: 2px red dotted;
-}
-
-.gameBoardRow5 {
-	display: grid;
-	grid-area: 5 / 1 / 6 / 2;
-	height: 20px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	width: 125px;
-	margin: 0px auto;
-	border: 1px white solid;
-	border-bottom: none;
-	text-align: center;
-	align-content: end;
-}
-
-.currentWordLabel {
-	display: grid;
-	grid-area: 2 / 1 / 3 / 2;
-	text-align: center;
-}
-
-.currentWord {
-	display: flex;
-	margin: auto 0px;
-	grid-area: 3 / 1 / 4 / 2;
-	justify-content: center;
-	color: black;
-	font-size: 20px;
-	font-weight: bolder;
-	text-shadow:
-    -1px -1px 0 red,
-    1px -1px 0 red,
-    -1px 1px 0 red,
-    1px 1px 0 red; 
-}
-
-.letterPoolLabel {
-	display: grid;
-	grid-area: 6 / 1 / 7 / 2;
-}
-
-.letterPool {
+	font-family: courier;
+	border-bottom: 2px black solid;
+	margin-right: 4px;
 	display: inline-block;
-	grid-area: 7 / 1 / 8 / 2;
-	padding: 0px 20px;
+	font-size: 24px;
+	float: left;
 }
 
-.spentLettersLabel {
-	display: grid;
-	grid-area: 8 / 1 / 9 / 2;
+.scrollContainer {
+    content:'';
+    position:absolute;
+    top:0;
+    bottom:0px;
+    left: 30px;
+    left:0;
+    right:0;
+    pointer-events:none;
+    width: 600px;
 }
 
-.spentLetters {
-	display: inline-block;
-	grid-area: 9 / 1 / 10 / 2;
-	padding: 0px 20px;
+.scrollContainer2 {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    transform-origin:50% 100%;
+    transform:perspective(300px) rotateX(20deg);
 }
 
 #results {
@@ -220,30 +190,7 @@ p {
 	color: red !important;
 }
 
-.win {
-	background-image: 
-}
-
-.lose {
-	background-image: 
-}
-
-h1{
-	color: red !important;
-	font-weight: 400;
-	padding: 0px;
-	margin: 5px;
-	line-height: auto;
-	height: 32px !important;
-}
-
-h2{
-	color: red !important;
-	font-weight: 400;
-	margin: 4px;
-}
-
-#lossStory {
+#winStory, #lossStory {
 	display: none;
 	position: absolute;
 	background-color: black;
@@ -261,63 +208,24 @@ h2{
 	padding: 25px;
 }
 
-#winStory {
-	display: none;
+#pressStart, #playAgain {
 	position: absolute;
-	background-color: black;
-	border: dotted 3px white;
-	color: white;
-	top: 290px;
-	right: 250px;
-	width: 400px;
-	grid-template-columns: auto;
-	opacity: .5;
-	z-index: 400;
-	color: #FFFFFF;
-	text-align: center;
-	font-family: arial, sans serif;
-	padding: 25px;
-}
-
-#preStory {
-	position: absolute;
-	bottom: 150px;
+	top: 800px;
 	left: 200px;
 	width: 600px;
+	height: 50px;
+	z-index: 400;
 	color: #FFFFFF;
-	height: 300px;
 	text-align: center;
 	font-family: arial, sans serif;
 }
 
 #pressStart {
 	display: grid;
-	position: absolute;
-	
-	top: 800px;
-	left: 200px;
-	width: 600px;
-	height: 50px;
-	
-	z-index: 400;
-	color: #FFFFFF;
-	text-align: center;
-	font-family: arial, sans serif;
 }
 
 #playAgain {
 	display: none;
-	position: absolute;
-	background-color: black;
-	top: 800px;
-	left: 200px;
-	width: 600px;
-	height: 50px;
-	
-	z-index: 400;
-	color: #FFFFFF;
-	text-align: center;
-	font-family: arial, sans serif;
 }
 
 #scoreBoard {
@@ -333,55 +241,6 @@ h2{
 	font-family: arial, sans serif;
 }
 
-#target{
-    position:absolute;
-    top:-3500px;
-    bottom:0;
-    left:0;
-    right:0;
-    overflow:hidden;
-    font-size:30px;
-    text-align:justify;
-    font-family:sans-serif;
-}
-#target>div{
-    padding-top:3500px;
-    animation:autoscroll 1000s linear;
-}
-.scrollContainer{
-    content:'';
-    position:absolute;
-    top:0;
-    bottom:0px;
-    left: 30px;
-    left:0;
-    right:0;
-    /*background:linear-gradient(top,rgba(0,0,0,1),rgba(0,0,0,0) 100%);
-    background:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0) 100%);*/
-    pointer-events:none;
-    width: 600px;
-}
-
-.scrollContainer2{
-    
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    transform-origin:50% 100%;
-    transform:perspective(300px) rotateX(20deg);
-}
-html{
-    color:white;
-    background:black;
-}
-@keyframes autoscroll{
-    to{
-        margin-top:-50000px;
-    }    
-}
-
 .floatLeft {
 	position: relative;
 	float: left;
@@ -393,3 +252,37 @@ html{
 	color: red !important;
 	font-size: 20px;
 }
+
+#preStory {
+	position: absolute;
+	bottom: 150px;
+	left: 200px;
+	width: 600px;
+	color: #FFFFFF;
+	height: 300px;
+	text-align: center;
+	font-family: arial, sans serif;
+}
+
+#target {
+    position:absolute;
+    top:-3500px;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+    font-size:30px;
+    text-align:justify;
+    font-family:sans-serif;
+}
+#target > div {
+    padding-top:3500px;
+    animation:autoscroll 1000s linear;
+}
+
+@keyframes autoscroll {
+    to {
+        margin-top:-50000px;
+    }    
+}
+
