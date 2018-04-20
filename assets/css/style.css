@@ -45,6 +45,25 @@ h2{
 	justify-content: center;
 }
 
+.letter-buttons {
+	float: left; 
+	padding: 3px 5px;
+	cursor: pointer;
+	border: 2px gray outset;
+	background: white;
+	color: black;
+	margin: auto 2.5px;
+	height: 20px;
+	font-weight: bold;
+	border-radius: 3px;
+	width: 18px;
+}
+
+.letter-buttons:hover, .letter-buttons:active, .letter-buttons:focus {
+	background: black;
+	color: white;
+}
+
 .headerContainer {
 	display: grid;
 	z-index: 1;
@@ -115,25 +134,28 @@ h2{
 }
 
 .gameBoardRow2, .gameBoardRow4 {
-	display: flex;
 	flex-wrap: wrap;
-	grid-area: 2 / 1 / 3 / 2;
-	height: 60px;
 	font-family: Courier, sans-serif;
 	font-size: 20px;
 	font-color: white;
 	padding: 10px;
 	justify-content: center;
+	align-content: center;
 }
 
 .gameBoardRow2 {
+	display: inline-block;
 	grid-area: 2 / 1 / 3 / 2;
 	border-bottom: 2px red dotted;
+	height: 120px;
+	padding-left: 20px;
 }
 
 .gameBoardRow4 {
+	display: flex;
 	grid-area: 4 / 1 / 5 / 2;
 	border-top: 2px red dotted;
+	height: 60px;
 }
 
 .gameBoardRow4 > div {
@@ -144,7 +166,7 @@ h2{
 .gameBoardRow3 {
 	display: flex;
 	justify-content: center;
-	height: 144px;
+	height: 84px;
 	font-size: 24px !important;
 	color: black;
 	font-weight: bolder;
@@ -210,14 +232,15 @@ h2{
 
 #pressStart, #playAgain {
 	position: absolute;
-	top: 800px;
-	left: 200px;
-	width: 600px;
+	top: 750px;
+	left: 100px;
+	width: 800px;
 	height: 50px;
 	z-index: 400;
 	color: #FFFFFF;
 	text-align: center;
 	font-family: arial, sans serif;
+	cursor: pointer;
 }
 
 #pressStart {
