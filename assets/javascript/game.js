@@ -87,7 +87,7 @@ function gameInitialize() {
 	t1.style.display='none';
 	t2.style.display='grid';
 	gContent.style.display='block';
-	update.innerHTML = '<img src="assets/images/left13.png">';
+	update.innerHTML = '<img src="assets/images/left13.png" id="leftpicture">';
 	start.style.display='none';
 	again.style.display='none';
 	wStory.style.display='none';
@@ -157,10 +157,10 @@ function guessProcessing() {
 					// If it doesn't exist reduce guessTally by 1, show a hangman piece.  If guessTally = 0 game over animate the game piece to "fall" and the head to "snap" and play a crunching sound
 					guessTally = parseInt(guessTally) - 1;
 					if (guessTally >= 0) {
-						update.innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
+						update.innerHTML = '<img src="assets/images/left' + guessTally + '.png" id="leftpicture">';
 					} else {
 						// protects against fast typers getting guessTally to -1 breaking the left image
-						update.innerHTML = '<img src="assets/images/left0.png">'
+						update.innerHTML = '<img src="assets/images/left0.png" id="leftpicture">'
 					}
 					// If guessTally reaches 0 you lose.  This kicks off even if fast typers get the guessTally to -1, so the game ends normally.
 					if(guessTally == 0) {
@@ -200,10 +200,10 @@ function clickGuessProcessing(e) {
 				// If it doesn't exist reduce guessTally by 1, show a hangman piece.  If guessTally = 0 game over animate the game piece to "fall" and the head to "snap" and play a crunching sound
 				guessTally = parseInt(guessTally) - 1;
 				if (guessTally >= 0) {
-					update.innerHTML = '<img src="assets/images/left' + guessTally + '.png">';
+					update.innerHTML = '<img src="assets/images/left' + guessTally + '.png" id="leftpicture">';
 				} else {
 					// protects against fast typers getting guessTally to -1 breaking the left image
-					update.innerHTML = '<img src="assets/images/left0.png">'
+					update.innerHTML = '<img src="assets/images/left0.png" id="leftpicture">'
 				}
 				// If guessTally reaches 0 you lose.  This kicks off even if fast typers get the guessTally to -1, so the game ends normally.
 				if(guessTally == 0) {
@@ -234,7 +234,7 @@ function postGameWin() {
 	audio = document.getElementById('bloodytears');
 	audio.play();
 	gBoard.style.display='none';
-	update.innerHTML = '<img src="assets/images/left11.png">';
+	update.innerHTML = '<img src="assets/images/left11.png" id="leftpicture">';
 	winTally = parseInt(winTally) + 1;
 	wins.innerHTML = winTally;
 	loss.innerHTML = lossesTally;
@@ -261,7 +261,7 @@ function hanging () {
 	audio.pause();
 	gBoard.style.display='none';
 	neckSnap.play()
-	update.innerHTML = '<img src="assets/images/left14.png">';
+	update.innerHTML = '<img src="assets/images/left14.png" id="leftpicture">';
 }
 
 function postGameLoss() {
