@@ -136,7 +136,7 @@ function guessProcessing() {
 		if(guessedAlphabet >= 0) {
 			// Posts letters already guessed the variable guess comes from the user input
 			var alphabetGuessed = '<div ' + guess  + '">' + guess + '</div>'
-			gLetters.insertAdjacentHTML('beforeend', alphabetGuessed);
+			gLetters.insertAdjacentHTML('afterbegin', alphabetGuessed);
 			delete alphabet[guessedAlphabet];
 			lettersRemaining()
 			// Look to compare guess to the currentWord.  If it exists innerHTML by id for "letter" + loop variable and reduce the currentWordLettersRemaining variable by 1.  If it equals 0 game wins.  Play a sound.  
