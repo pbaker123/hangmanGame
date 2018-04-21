@@ -111,6 +111,7 @@ h2{
 #leftpicture {
 	width: 640px;
 	height: 480px;
+	border: none;
 }
 
 .gameBoard {
@@ -332,7 +333,7 @@ h2{
 	}
 
 	.headerContainer, .headerContainer2 {
-	width: 1000px;
+		width: 1000px;
 	}
 
 	.title-pic {
@@ -353,8 +354,8 @@ h2{
 	}
 
 	.gameBoard {
-	top: 250px;
-	right: 10px;
+		top: 250px;
+		right: 10px;
 	}
 
 	.gameBoardRow2 {
@@ -376,9 +377,9 @@ h2{
 	}
 
 	#winStory, #lossStory {
-	top: 290px;
-	right: 250px;
-	height: initial;	
+		top: 290px;
+		right: 250px;
+		height: initial;	
 	}
 
 	#leftpicture {
@@ -389,12 +390,13 @@ h2{
 	.leftContent {
 		position: initial;
 		left: 0px;
+		border: none;
 	}
 
 	#scoreBoard {
-	left: 20px;
-	bottom: 20px;
-	top: initial;
+		left: 20px;
+		bottom: 20px;
+		top: initial;
 	}
 
 	#pressStart, #playAgain {
